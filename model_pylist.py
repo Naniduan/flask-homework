@@ -10,6 +10,7 @@ class model(Model):
         self.__initiate_model()
 
     def __initiate_model(self):
+        global comments
         try:
             comments = sql.connect(self.database)
             cursor = comments.cursor()
