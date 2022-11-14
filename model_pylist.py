@@ -47,6 +47,7 @@ class model(Model):
         :param message: String
         :return: True
         """
+        global comments
         current_date = date.today()
         params = [name, email, current_date, message]
         self.guestentries.append(params)
