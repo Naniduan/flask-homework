@@ -20,23 +20,80 @@
   crossorigin="anonymous"
 ></script>
 
-{% extends "layout.html" %}
-{% block content %}
-    <h2>Guestbook</h2>
-    <form action="{{ url_for('sign') }}" method=post>
-        <p class="heading">Ваше имя: <input type=text name=name>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .columns-header {
+        margin-top: 0.3em;
+        margin-bottom: 1em;
+      }
+      .btn{
+        margin-top: 1em;
+      }
+      .featurette-heading{
+        font-size: 1.5em;
+      }
+    </style>
+    <title>Личная страница</title>
+  </head>
+
+{% extends "layout.html" %} {% block content %}
+<div class="col-md-7">
+  <h2 class="columns-header">Guestbook</h2>
+  <form action="{{ url_for('sign') }}" method="post">
+    <div class="input-group mb-3">
+      <span class="input-group-text">Назовите себя</span>
+      <input
+        type="text"
+        name="name"
+        class="form-control"
+        aria-describedby="basic-addon3"
+      />
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text">Как с вами связаться</span>
+      <input
+        type="text"
+        name="email"
+        class="form-control"
+        aria-describedby="basic-addon3"
+      />
+    </div>
+
+    <div class="input-group">
+      <span class="input-group-text">Ваш отзыв</span>
+      <textarea
+        class="form-control"
+        name="message"
+        aria-label="With textarea"
+        style="height: 38px"
+      ></textarea>
+    </div>
+    <!--<p class="heading">Ваше имя: <input type=text name=name>
         <p class="heading">Ваш Email: <input type=text name=email>
         <p class="heading">Что вы хотите сказать?
-        <textarea rows=5 cols=50 name=message></textarea></p>
-        <p><input type=submit value=Sign></p>
-    </form>
+        <textarea rows=5 cols=50 name=message></textarea></p>-->
+    <p><input type="submit" value="Отправить" class="btn btn-primary"/></p>
+  </form>
+  <hr class="featurette-divider" />
 
-    <h2>Отзывы:</h2>
-    {% for entry in entries[::-1] %}
-        <p class=entry>
-            {{ entry.name }} &lt;{{ entry.email }}&gt;
-            <br>signed on {{ entry.signed_on }}<br>
-            {{ entry.message }}
-        </p>
-    {% endfor %}
-{% endblock %}
+  <h2>Отзывы:</h2>
+  </div>
+  {% for entry in entries[::-1] %}
+  <div class="col-md-7">
+
+  <h2 class="featurette-heading fw-normal lh-1">
+    {{ entry.name }} <span class="text-muted">{{ entry.email }}</span>
+  </h2>
+  <p class="entry">
+    {{ entry.message }}
+    <br /><span class="text-muted">- отправлено {{ entry.signed_on }}</span>
+  </p>
+    </div>
+
+
+{% endfor %} {% endblock %}
