@@ -2,7 +2,6 @@ from flask import Flask, redirect, request, url_for, render_template
 from model_pylist import model
 import sqlite3 as sql
 
-
 app = Flask(__name__)
 model = model('entries.db')
 
@@ -25,7 +24,6 @@ def initiate_database():
         if (comments):
             comments.close()
             print("Соединение с SQLite закрыто")
-
 
 
 @app.route("/")
@@ -52,4 +50,4 @@ def sign():
 if __name__ == '__main__':
     initiate_database()
 
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
