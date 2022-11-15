@@ -22,7 +22,7 @@ def initiate_database():
     except sql.Error as error:
         print("Ошибка при подключении к sqlite", error)
     finally:
-        if (comments):
+        if (comments!='0'):
             comments.close()
             print("Соединение с SQLite закрыто")
 
