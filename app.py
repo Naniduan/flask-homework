@@ -7,6 +7,7 @@ model = model('entries.db')
 
 
 def initiate_database():
+    comments = '0'  # it isn't working otherwise
     try:
         sqlite_create_table_query = '''create table if not exists messages(
                                         name text,
