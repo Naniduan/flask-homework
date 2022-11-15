@@ -10,7 +10,7 @@ class model(Model):
         self.__initiate_model()
 
     def __initiate_model(self):
-        global comments
+        comments = '0' #it isn't working otherwise
         try:
             comments = sql.connect(self.database)
             cursor = comments.cursor()
@@ -27,7 +27,7 @@ class model(Model):
         except sql.Error as error:
             print("Ошибка при работе с SQLite", error)
         finally:
-            if (comments):
+            if (comments!='0'):
                 print("Всего строк, измененных после подключения к базе данных: ", comments.total_changes)
                 comments.close()
                 print("Соединение с SQLite закрыто")
@@ -48,7 +48,7 @@ class model(Model):
         :param message: String
         :return: True
         """
-        global comments
+        comments = '0' #it isn't working otherwise
         current_date = date.today()
         params = [name, email, current_date, message]
         self.guestentries.append(params)
@@ -69,7 +69,7 @@ class model(Model):
         except sql.Error as error:
             print("Ошибка при работе с SQLite", error)
         finally:
-            if (comments):
+            if (comments!='0'):
                 print("Всего строк, измененных после подключения к базе данных: ", comments.total_changes)
                 comments.close()
                 print("Соединение с SQLite закрыто")
