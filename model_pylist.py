@@ -7,10 +7,11 @@ class model(Model):
     def __init__(self, database):
         self.guestentries = []
         self.database = database
-        self.__initiate_model()
+        self.__update_model()
 
-    def __initiate_model(self):
+    def __update_model(self):
         comments = '0' #it isn't working otherwise
+        self.guestentries = []
         try:
             comments = sql.connect(self.database)
             cursor = comments.cursor()
@@ -33,6 +34,7 @@ class model(Model):
                 print("Соединение с SQLite закрыто")
 
     def select(self):
+        self.__update_model()
         """
         Returns guestentries list of lists
         Each list in guestentries contains: name, email, date, message
